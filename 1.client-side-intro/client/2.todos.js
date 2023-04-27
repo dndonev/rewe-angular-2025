@@ -29,8 +29,7 @@ function deleteItem(todo) {
         body: JSON.stringify({
             itemName: todo
         })
-    })
-    .then((items) => console.log(items));
+    });
 }
 
 function addToDoItem() {
