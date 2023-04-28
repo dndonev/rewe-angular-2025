@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Todo App';
-  placeholder = 'Enter your name';
+  placeholder = 'Enter your todo';
   buttonText = 'Click me';
 
   onButtonClick() {
