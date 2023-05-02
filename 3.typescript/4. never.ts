@@ -1,4 +1,4 @@
-// const mystery: never = 5;
+const mystery: never = 5;
 
 const forever = () => {
     while (true) {
