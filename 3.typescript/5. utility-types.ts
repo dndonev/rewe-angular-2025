@@ -3,10 +3,11 @@ interface ICar {
     capacity: number;
 }
 
-type TCarCapacity = Omit<ICar, 'serialNumber'>;
-
+type TCarCapacity = Omit<ICar, 'serialNumber' | 'capacity' | 'regPlate'>;
 type NullableCar = Partial<ICar>;
 
+type TCapacityCar = Pick<ICar, 'capacity'>;
+
 const car: TCarCapacity = {
-    capacity: 5
+    
 }

@@ -3,10 +3,11 @@ interface ICat {
 }
 
 interface ICat {
-    age: number;
+    age?: number;
 }
 
-const cat: ICat = {
+type TOptionalAgeCat = ICat;
+
+const cat: TOptionalAgeCat = {
     name: 'catty',
-    age: 12
 }

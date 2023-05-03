@@ -1,6 +1,6 @@
-let myNum = 5;
+let myNum: any = 5;
 
-myNum.firstName;
+myNum.productId;
 
 myNum = 'five';
 let myStringNum = 'five';
