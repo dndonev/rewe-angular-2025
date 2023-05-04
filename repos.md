@@ -9,7 +9,6 @@ https://github.com/rd-henrique-krastev/angular-training
 Kaloyan Marinov
 https://github.com/marinov-kaloyan/new-angular-app
 
-
 Aleksandar Dimitrov
 https://github.com/AlexDim1/Angular-Training-App
 

@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+
+<input [placeholder]="placeholder">
+
+<button [attr.disabled]="isDisabled">Click me!</button>
+
+<div [class.active]="isActive">my div</div>
+<div [class]="{ active: isActive, activeText: isActive }">my other div</div>
+
+<div [style.color]="color">my style binding</div>
+
+<button type="button" (click)="alertForClicked()">Please, click!</button>
+<input [placeholder]="keyUpPlaceholder" (keyup)="onKeyUp()">
+
+<input [(ngModel)]="inputValue">
+<p> {{ inputValue }} </p>
