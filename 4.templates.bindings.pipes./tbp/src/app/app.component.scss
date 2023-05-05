@@ -5,3 +5,26 @@
 .activeText {
     color: white;
 }
+
+p {
+    text-transform: uppercase;
+}
+.parent {
+    background-color: antiquewhite;
+    width: 500px;
+    min-height: 200px;
+    display: flex;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-template-rows: repeat(2, 1fr);
+    // flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.child {
+    background-color: aqua;
+    // flex: 1 1 200px;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+}

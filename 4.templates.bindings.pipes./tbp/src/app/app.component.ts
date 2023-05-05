@@ -12,11 +12,22 @@ export class AppComponent {
   isDisabled: boolean = true;
   isActive: boolean = true;
   fontSize: string = '24px';
-  myObj = {
-    name: 'Dobri'
-  }
+  user = {
+    name: 'Dobri',
+    age: 26,
+
+  } as any
   color: string = 'pink';
   keyUpPlaceholder: string = 'on key up';
+
+  today: Date = new Date();
+
+  amount: number = 0.68;
+  myNumber: number = 5;
+  myPower: number = 5;
+  currencyCode: string = 'EUR';
+
+  myPromise$: Promise<number> = Promise.resolve(5);
 
   public onKeyUp() {
     console.log('oon key uped')
