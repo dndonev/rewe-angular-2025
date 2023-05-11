@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./other-component.component.scss']
 })
 export class OtherComponentComponent {
-
+  directiveBackgroundColor: string = 'green';
 }
