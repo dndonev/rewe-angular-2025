@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'real-directives';
-  directiveBackgroundColor: string = 'lightpink';
+  directiveBackgroundColor: string = 'pink';
 }
