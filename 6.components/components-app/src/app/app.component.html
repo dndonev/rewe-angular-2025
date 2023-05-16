@@ -1,0 +1,8 @@
+<h1>My Person</h1>
+
+<p>{{person.name}}</p>
+<p>{{person.age}}</p>
+<app-child
+  [personDetails]="person.details"
+  (personDetailsChange)="onPersonDetailsChange($event)"
+></app-child>
