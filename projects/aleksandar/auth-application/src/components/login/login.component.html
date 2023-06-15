@@ -1,13 +1,18 @@
-<div class="input-container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="input-container">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" [(ngModel)]="username">
+        <div class="input-container">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" formControlName="username">
+        </div>
+        <div class="input-container">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" formControlName="password">
+        </div>
+        <div class="input-container">
+            <button type="submit">Login</button>
+        </div>
+        <div class="input-container">
+            <button type="button" *ngIf="!authService.isLoggedIn" (click)="onRegisterClick()">Register</button>
+        </div>
     </div>
-    <div class="input-container">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" [(ngModel)]="password">
-    </div>
-    <div class="input-container">
-        <button (click)="onButtonClick()" [attr.disabled]="isDisabled() ? true : null">Login</button>
-    </div>
-</div>
+</form>
