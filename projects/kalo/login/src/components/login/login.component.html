@@ -1,0 +1,14 @@
+<div class="inputsContainer">
+    <div class="inputs">
+        <label for="username">USERNAME</label>
+        <input name="username" type="text" [(ngModel)]="username">
+    </div>
+    <div class="inputs">
+        <label for="password">PASSWORD</label>
+        <input name="password" type="password" [(ngModel)]="password">
+    </div>
+    <div class="inputs">
+        <button (click)="onButtonClick()" [attr.disabled]="isDisabled()?true:null" >Login</button>
+    </div>
+    
+</div>
