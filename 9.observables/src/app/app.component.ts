@@ -1,31 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, first, map, from, interval, of, range } from 'rxjs';
+import { Subscription, of, delay, ReplaySubject } from 'rxjs';
 
+interface User {
+  name: string;
+  loggedIn: boolean;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  
+
   title = '9.observables';
   subscription: Subscription = new Subscription();
 
+  getData(param: number) {
+    return of('retrieved new data with param ' + param).pipe(delay(Math.random() * 1000));
+  }
+
   ngOnInit(): void {
-    // const obs1 = of(1);
-    const obs2 = from([1,2,3]);
-    // const obs3 = from([4, 5, 6]);
 
-    // const obs = forkJoin({
-    //   obs1,
-    //   obs2,
-    //   obs3
-    // });
+    const user: User = {
+      name: 'Brian',
+      loggedIn: false,
+    };
 
-    const sub = obs2
-      .pipe(first(), map(x => x * 2))
-      .subscribe((value) => console.log('EMITTED VALUE', value));
+    const subject = new ReplaySubject<User>(3);
 
-    this.subscription.add(sub)
+    subject.subscribe(user => console.log('observer 1: ' + user.loggedIn));
+    subject.next({ ...user, loggedIn: true });
+    subject.next({ ...user, loggedIn: false });
+    subject.next({ ...user, loggedIn: true });
+
+    subject.subscribe(user => console.log('observer 2: ' + user.loggedIn));
   }
 }
