@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
@@ -9,7 +9,9 @@ import {IUser} from "../../types/user.types";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  isLoggedIn: boolean = false;
 
   form: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
@@ -19,6 +21,18 @@ export class LoginComponent {
   constructor(public authService: AuthService,
               private router: Router,
               private fb: NonNullableFormBuilder) {}
+
+  ngOnInit(): void {
+    this.authService.getLoggedInSubject()
+      .subscribe((isUserLoggedIn) =>
+      {
+        this.isLoggedIn = isUserLoggedIn;
+
+        if(this.isLoggedIn) {
+          this.router.navigate(['dashboard', { username: this.form.get('username')?.value}]);
+        }
+      })
+  }
 
   onSubmit(): void {
     const username = this.form.get('username')?.value;
@@ -31,11 +45,7 @@ export class LoginComponent {
       password
     }
 
-    if (this.authService.login(user))
-      this.router.navigate(['dashboard', { username: user.username }]);
-    else
-      alert('error');
-
+    this.authService.login(user);
     console.log(this.form)
   }
 
@@ -43,5 +53,7 @@ export class LoginComponent {
 
     this.router.navigate(['register'])
   }
+
+
 
 }

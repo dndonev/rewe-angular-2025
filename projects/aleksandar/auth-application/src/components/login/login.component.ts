@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from 'src/types/user.types';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = ''
-  password: string = ''
+  form: FormGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(4)]]
+  })
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  isDisabled(): boolean {
-    return this.username === '' || this.password === ''
+  constructor(public authService: AuthService, private router: Router, private fb: NonNullableFormBuilder) {
   }
 
-  onButtonClick(): void {
+  onSubmit(): void {
+    const username = this.form.get('username')?.value;
+    const password = this.form.get('password')?.value;
+
+    if(!username && !password) return;
+
     const user: IUser = {
-      username: this.username,
-      password: this.password
+      username,
+      password
     };
 
     if (this.authService.login(user))
       this.router.navigate(['dashboard', { username: user.username }]);
     else
       alert('error');
+
+    console.log(this.form);
+  }
+
+  onRegisterClick(): void {
+    this.router.navigate(['register']);
   }
 }

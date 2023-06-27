@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { IUser, TUsers } from 'src/types/user.types';
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
+
+  private isLoggedInSubject$ = new BehaviorSubject(false);
 
   constructor() { }
 
   users: TUsers = [
     {
       username: 'admin',
-      password: 'admin'
+      password: '12345admin'
     },
     {
       username: 'Gosho',
@@ -20,13 +22,18 @@ export class AuthService {
     }
   ]
 
-  login(user: IUser): boolean {
+  getLoggedInSubject(): Observable<boolean> {
+    return this.isLoggedInSubject$.asObservable()
+  }
+
+  login(user: IUser): void {
+
     const availableUser = this.users.find(u => u.username === user.username && u.password === user.password);
-    this.isLoggedIn = !!availableUser;
-    return this.isLoggedIn;
+
+    this.isLoggedInSubject$.next(!!availableUser)
   }
 
   logout(): void {
-    this.isLoggedIn = false;
+    this.isLoggedInSubject$.next(false)
   }
 }

@@ -12,6 +12,7 @@ import {IUser} from "../../types/user.types";
 export class RegisterComponent {
 
 
+
   form: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]],
