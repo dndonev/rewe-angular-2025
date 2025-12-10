@@ -1,28 +1,16 @@
-<!-- Bindings -->
-<h1>{{ title }}</h1>
-
-<input [placeholder]="placeholder">
-
-<button [attr.disabled]="isDisabled">Click me!</button>
-
-<div [class.active]="isActive">my div</div>
-<div [class]="{ active: isActive, activeText: isActive }">my other div</div>
-
-<div [style.color]="color">my style binding</div>
-
-<button type="button" (click)="alertForClicked()">Please, click!</button>
-<input [placeholder]="keyUpPlaceholder" (keyup)="onKeyUp()">
-
-<input min="" max=""  [(ngModel)]="inputValue">
-<p> {{ inputValue }} </p> -->
-
-<!-- Flex vs Grid training -->
-<!-- <div class="parent">
-    <div class="child">1</div>
-    <div class="child">2</div>
-    <div class="child">3</div>
-</div>
-
-<p>Pipes:</p>
-
-<p>{{ myNumber | power:myPower | currency: 'USD': true }}</p>
+<p>{{ today  }}</p>
+<p>
+    Text: {{ text | slice: 0:5 }}
+</p>
+<p>
+    Amount: {{ amount | currency: 'USD':true:'1.4-8' }}
+</p>
+<p>
+    User: {{ user | json }}
+</p>
+<p>
+    Promise: {{ myPromise$ | async }} 
+</p>
+<p>
+    Power: {{ 13 | power: 2 | number: '1.4-8' }}
+</p>

@@ -1,0 +1,3 @@
+create a simple todo list with an input field and a button that:
+- adds a new todo in a list
+- removes a todo from the list on click of the item

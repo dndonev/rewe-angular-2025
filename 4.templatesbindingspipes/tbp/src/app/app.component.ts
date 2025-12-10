@@ -1,39 +1,33 @@
 import { Component } from '@angular/core';
 
+type User = {
+    firstName: string;
+    lastName: string;
+    age: number;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title: string = 'tbp';
-  inputValue: string = 'my input';
-  placeholder: string = 'Please enter a name';
-  isDisabled: boolean = true;
-  isActive: boolean = true;
-  fontSize: string = '24px';
-  user = {
-    name: 'Dobri',
-    age: 26,
+export class AppComponent  {
 
-  } as any
-  color: string = 'pink';
-  keyUpPlaceholder: string = 'on key up';
+  public today: Date = new Date();
+  public text: string = 'asdfasdfasdf';
+  public amount: number = 52000;
+  public myPromise$: Promise<number> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(10);
+    }, 1000);
+  });
+  public user: User = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 30
+  };
 
-  today: Date = new Date();
-
-  amount: number = 0.68;
-  myNumber: number = 5;
-  myPower: number = 5;
-  currencyCode: string = 'EUR';
-
-  myPromise$: Promise<number> = Promise.resolve(5);
-
-  public onKeyUp() {
-    console.log('oon key uped')
+  public onButtonClick() {
+    console.log('Button clicked');
   }
 
-  public alertForClicked() {
-    alert('Clicked');
-  }
 }

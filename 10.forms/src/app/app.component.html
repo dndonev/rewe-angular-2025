@@ -1,8 +1,7 @@
-<form [formGroup]="form">
+<form [formGroup]="loginForm">
   <input placeholder="email" formControlName="email">
   <p *ngIf="isFormControlInvalid('email')">You email is not valid</p>
-  <input *ngIf="showAdditionalField" placeholder="PIN">
   <input placeholder="password" formControlName="password">
-  <p *ngIf="form.hasError">You email is not valid</p>
-  <button type="button" [disabled]="!form.valid">Login</button>
+  <p *ngIf="form.hasError">You form is not valid</p>
+  <button type="button" [disabled]="form.invalid">Login</button>
 </form>

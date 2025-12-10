@@ -1,0 +1,253 @@
+<div class="demo-container">
+  <h1>RxJS Observable Demonstrations</h1>
+  <p class="intro">
+    This app demonstrates the different types of Observables and Subjects in RxJS.
+    Open the browser console to see detailed logs of the observable behavior.
+  </p>
+
+  <!-- Observable Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>1. Basic Observable</h2>
+      <span class="badge cold">Cold Observable</span>
+    </div>
+    <p class="description">
+      A basic Observable that fetches data from JSONPlaceholder API. 
+      Each subscription creates a new HTTP request (cold observable).
+    </p>
+    <button class="btn btn-primary" (click)="fetchRandomPost()" [disabled]="loading()">
+      {{ loading() ? 'Loading...' : 'Fetch Random Post' }}
+    </button>
+    
+    @if (currentPost()) {
+      <div class="result-card">
+        <h3>{{ currentPost()!.title }}</h3>
+        <p class="post-body">{{ currentPost()!.body }}</p>
+        <div class="meta">
+          <span>Post ID: {{ currentPost()!.id }}</span>
+          <span>User ID: {{ currentPost()!.userId }}</span>
+        </div>
+      </div>
+    }
+  </section>
+
+  <!-- Subject Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>2. Subject</h2>
+      <span class="badge hot">Hot Observable</span>
+    </div>
+    <p class="description">
+      A Subject is both an Observable and Observer. It doesn't have an initial value.
+      Subscribers only receive values emitted after they subscribe (no replay).
+    </p>
+    <div class="input-group">
+      <input 
+        type="text" 
+        [value]="messageInput()"
+        (input)="updateMessageInput($event)"
+        placeholder="Enter a message"
+        (keyup.enter)="sendMessage()"
+      />
+      <button class="btn btn-secondary" (click)="sendMessage()">Send Message</button>
+      <button class="btn btn-danger" (click)="clearMessages()">Clear</button>
+    </div>
+    
+    <div class="messages-container">
+      <h4>Received Messages ({{ messages().length }}):</h4>
+      @if (messages().length === 0) {
+        <p class="empty-state">No messages yet. Send a message to see it appear here.</p>
+      }
+      @for (msg of messages(); track $index) {
+        <div class="message-item">
+          <span class="message-index">{{ $index + 1 }}.</span>
+          <span class="message-text">{{ msg }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- BehaviorSubject Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>3. BehaviorSubject</h2>
+      <span class="badge hot">Hot Observable</span>
+    </div>
+    <p class="description">
+      A BehaviorSubject requires an initial value and always emits the latest value to new subscribers.
+      It maintains state and you can get the current value synchronously.
+    </p>
+    <div class="btn-group">
+      <button class="btn btn-primary" (click)="fetchRandomUser()">Fetch Random User</button>
+      <button class="btn btn-danger" (click)="clearUser()">Clear User</button>
+    </div>
+    
+    @if (currentUser()) {
+      <div class="result-card user-card">
+        <h3>{{ currentUser()!.name }}</h3>
+        <div class="user-details">
+          <p><strong>Email:</strong> {{ currentUser()!.email }}</p>
+          <p><strong>Phone:</strong> {{ currentUser()!.phone }}</p>
+          <p><strong>ID:</strong> {{ currentUser()!.id }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="empty-state">No user loaded. Click "Fetch Random User" to load one.</div>
+    }
+  </section>
+
+  <!-- ReplaySubject Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>4. ReplaySubject</h2>
+      <span class="badge hot">Hot Observable</span>
+    </div>
+    <p class="description">
+      A ReplaySubject can replay the last N values to new subscribers.
+      This one is configured to replay the last 3 notifications to any new subscriber.
+    </p>
+    <div class="input-group">
+      <input 
+        type="text" 
+        [value]="notificationInput()"
+        (input)="updateNotificationInput($event)"
+        placeholder="Enter a notification"
+        (keyup.enter)="addNotification()"
+      />
+      <button class="btn btn-secondary" (click)="addNotification()">Add Notification</button>
+      <button class="btn btn-info" (click)="lateSubscribeToNotifications()">
+        Late Subscribe (Check Console)
+      </button>
+      <button class="btn btn-danger" (click)="clearNotifications()">Clear</button>
+    </div>
+    
+    <div class="notifications-container">
+      <h4>Notifications ({{ notifications().length }}):</h4>
+      @if (notifications().length === 0) {
+        <p class="empty-state">No notifications. Add one to see it here.</p>
+      }
+      @for (notif of notifications(); track $index) {
+        <div class="notification-item">
+          <span class="notif-badge">{{ $index + 1 }}</span>
+          <span class="notif-text">{{ notif }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Cold Observable Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>5. Cold Observable - Multiple Subscriptions</h2>
+      <span class="badge cold">Cold Observable</span>
+    </div>
+    <p class="description">
+      Cold Observables create independent execution for each subscriber.
+      The second subscriber will start 2 seconds after the first, showing they run independently.
+    </p>
+    <div class="btn-group">
+      <button class="btn btn-primary" (click)="subscribeToColdObservable1()">
+        Subscribe Stream 1
+      </button>
+      <button class="btn btn-secondary" (click)="subscribeToColdObservable2()">
+        Subscribe Stream 2 (Delayed)
+      </button>
+    </div>
+    
+    <div class="cold-obs-container">
+      <div class="stream">
+        <h4>Stream 1:</h4>
+        <div class="data-display">
+          @if (coldObsData1().length === 0) {
+            <span class="empty">Not subscribed</span>
+          } @else {
+            @for (val of coldObsData1(); track $index) {
+              <span class="data-value">{{ val }}</span>
+            }
+          }
+        </div>
+      </div>
+      <div class="stream">
+        <h4>Stream 2:</h4>
+        <div class="data-display">
+          @if (coldObsData2().length === 0) {
+            <span class="empty">Not subscribed</span>
+          } @else {
+            @for (val of coldObsData2(); track $index) {
+              <span class="data-value">{{ val }}</span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Stream Demo -->
+  <section class="demo-section">
+    <div class="section-header">
+      <h2>6. Continuous Data Stream</h2>
+      <span class="badge hot">Hot Stream</span>
+    </div>
+    <p class="description">
+      A stream that emits values every second. The stream will automatically stop after 15 seconds.
+    </p>
+    <button class="btn btn-success" (click)="startDataStream()">Start Data Stream</button>
+    
+    <div class="stream-display">
+      @if (streamData().length === 0) {
+        <p class="empty-state">Stream not started. Click "Start Data Stream" to begin.</p>
+      } @else {
+        <div class="stream-values">
+          @for (val of streamData(); track $index) {
+            <span class="stream-value" [class.latest]="$index === streamData().length - 1">
+              {{ val }}
+            </span>
+          }
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="demo-section info-section">
+    <h2>Key Differences</h2>
+    <div class="comparison-grid">
+      <div class="comparison-card">
+        <h3>Observable</h3>
+        <ul>
+          <li>Cold by default (unicast)</li>
+          <li>Each subscriber gets independent execution</li>
+          <li>Data producer is created for each subscription</li>
+          <li>Perfect for HTTP requests</li>
+        </ul>
+      </div>
+      <div class="comparison-card">
+        <h3>Subject</h3>
+        <ul>
+          <li>Hot observable (multicast)</li>
+          <li>No initial value</li>
+          <li>Subscribers only get future emissions</li>
+          <li>Good for event bus pattern</li>
+        </ul>
+      </div>
+      <div class="comparison-card">
+        <h3>BehaviorSubject</h3>
+        <ul>
+          <li>Hot observable (multicast)</li>
+          <li>Requires initial value</li>
+          <li>New subscribers get last emitted value</li>
+          <li>Can get current value synchronously</li>
+          <li>Perfect for state management</li>
+        </ul>
+      </div>
+      <div class="comparison-card">
+        <h3>ReplaySubject</h3>
+        <ul>
+          <li>Hot observable (multicast)</li>
+          <li>Replays last N values to new subscribers</li>
+          <li>Can buffer unlimited values</li>
+          <li>Good for recent history tracking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

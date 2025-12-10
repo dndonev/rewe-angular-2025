@@ -1,1 +1,13 @@
 <p>templates works!</p>
+@if (isTemplate) {
+    <input [ngClass]="isTemplate ? myclass : myclass2" [ngStyle]="{color: 'red'}" placeholder="template input">
+} @else {
+    <button>Click me</button>
+}
+
+@for (i of [1, 2, 3, 4, 5]) {
+    <p>{{i}}</p>
+}
+
+{{fullName}}
+{{fullName.length}}

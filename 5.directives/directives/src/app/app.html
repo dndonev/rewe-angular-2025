@@ -1,0 +1,56 @@
+<h1>Directives</h1>
+
+<!-- Old syntax -->
+<p *ngIf="!showParagraph; else elseBlock"> If Paragraph</p>
+<ng-template #elseBlock>Else Paragraph</ng-template>
+<!-- New syntax -->
+@if(showParagraph){
+    <p>Paragraph</p>
+} @else {
+    <p>Else Paragraph</p>
+}
+
+<!-- Old syntax -->
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+<!-- New syntax -->
+<ul>
+  @for(item of items; track $index){
+    <li>{{ item }}</li>
+  }
+</ul>
+
+<!-- Old syntax -->
+<div [ngSwitch]="selectedColor">
+  <ng-container *ngSwitchCase="'red'">
+    <span >Red</span>
+
+  </ng-container>
+  <ng-container *ngSwitchCase="'blue'">
+    <span >Blue</span>
+
+  </ng-container>
+  <ng-container *ngSwitchCase="'green'">
+    <span >Green</span>
+
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <span>Default</span>
+  </ng-container>
+</div>
+<!-- new syntax -->
+@switch (selectedColor) {
+  @case ('red') {
+    <span>Red</span>
+  }
+}
+
+
+<app-person-with-avatar>
+  <app-another-person ></app-another-person>
+</app-person-with-avatar>
+<app-person-with-avatar>
+  <app-person [person]="person"></app-person>
+</app-person-with-avatar>
