@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.app-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 28px;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Router Outlet Banner */
+.router-outlet-banner {
+  background: #fff3cd;
+  border-bottom: 3px solid #ffc107;
+  padding: 12px 20px;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.banner-content strong {
+  color: #856404;
+  font-size: 16px;
+}
+
+.banner-content span {
+  color: #856404;
+  font-size: 14px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background: #f5f5f5;
+}
+
+/* Footer */
+.app-footer {
+  background: #343a40;
+  color: white;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-content p {
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  color: #adb5bd;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo h1 {
+    font-size: 18px;
+  }
+  
+  .logo-icon {
+    font-size: 24px;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: calc(100vh - 70px);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    gap: 0;
+  }
+  
+  .main-nav.open {
+    left: 0;
+  }
+  
+  .nav-link {
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .footer-content {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,90 @@
+.page-container {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content-box {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-banner {
+  background: #d1ecf1;
+  border-left: 4px solid #17a2b8;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.users-nav {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  background: white;
+  border: 2px solid #dee2e6;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  background: #e9ecef;
+  border-color: #007bff;
+}
+
+.nav-link.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.child-outlet-container {
+  min-height: 300px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.code-explanation {
+  background: #fff3cd;
+  padding: 20px;
+  border-radius: 6px;
+  margin-top: 30px;
+  border-left: 4px solid #ffc107;
+}
+
+.code-explanation h3 {
+  margin-top: 0;
+  color: #856404;
+}
+
+.code-explanation pre {
+  background: #282c34;
+  color: #abb2bf;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 15px 0;
+}
+
+.code-explanation code {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}

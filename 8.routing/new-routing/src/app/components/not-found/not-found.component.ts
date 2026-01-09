@@ -1,0 +1,184 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-not-found',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <div class="page-container">
+      <div class="not-found-content">
+        <div class="error-code">404</div>
+        <h1>🚫 Page Not Found</h1>
+        <p class="error-message">
+          Oops! The page you're looking for doesn't exist.
+        </p>
+        
+        <div class="info-box">
+          <h3>💡 Wildcard Route Example</h3>
+          <p>This component is displayed when no other routes match.</p>
+          <p>It's configured using the wildcard route:</p>
+          <pre><code>{{ '{' }} path: '**', component: NotFoundComponent {{ '}' }}</code></pre>
+          <p class="note">⚠️ The wildcard route must be the <strong>last route</strong> in your routes array!</p>
+        </div>
+        
+        <div class="action-buttons">
+          <a routerLink="/" class="home-button">🏠 Go to Home</a>
+          <a routerLink="/products" class="products-button">🛍️ Browse Products</a>
+        </div>
+        
+        <div class="suggestions">
+          <h4>Quick Links:</h4>
+          <ul>
+            <li><a routerLink="/about">About Page</a></li>
+            <li><a routerLink="/contact">Contact Us</a></li>
+            <li><a routerLink="/users">Users Section</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .page-container {
+      padding: 20px;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .not-found-content {
+      text-align: center;
+      max-width: 700px;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .error-code {
+      font-size: 120px;
+      font-weight: bold;
+      color: #dc3545;
+      line-height: 1;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .error-message {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    
+    .info-box {
+      background: #fff3cd;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 30px 0;
+      text-align: left;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .info-box h3 {
+      margin-top: 0;
+      color: #856404;
+    }
+    
+    .info-box pre {
+      background: #282c34;
+      color: #abb2bf;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+    
+    .info-box code {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    
+    .note {
+      background: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .home-button,
+    .products-button {
+      padding: 12px 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .home-button {
+      background: #007bff;
+      color: white;
+    }
+    
+    .home-button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+    
+    .products-button {
+      background: #28a745;
+      color: white;
+    }
+    
+    .products-button:hover {
+      background: #218838;
+      transform: translateY(-2px);
+    }
+    
+    .suggestions {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 30px;
+    }
+    
+    .suggestions h4 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .suggestions ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+    
+    .suggestions li {
+      margin: 10px 0;
+    }
+    
+    .suggestions a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .suggestions a:hover {
+      text-decoration: underline;
+    }
+  `]
+})
+export class NotFoundComponent {}

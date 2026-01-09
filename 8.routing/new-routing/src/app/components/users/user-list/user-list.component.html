@@ -1,0 +1,27 @@
+<div class="child-component">
+  <h3>📋 User List (Child Component)</h3>
+  <p>This component is rendered inside the Users component's router-outlet.</p>
+  
+  <div class="user-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td><span class="role-badge">{{ user.role }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

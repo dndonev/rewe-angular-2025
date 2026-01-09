@@ -1,0 +1,44 @@
+<div class="page-container">
+  <h1>👥 Users Section</h1>
+  <div class="content-box">
+    <h2>Child Routes Demonstration</h2>
+    <p>This section demonstrates <strong>nested routing</strong> (child routes).</p>
+    
+    <div class="info-banner">
+      <strong>📌 Key Concept:</strong> This component has its own &lt;router-outlet&gt; 
+      where child components are displayed!
+    </div>
+    
+    <div class="users-nav">
+      <a [routerLink]="['list']" routerLinkActive="active" class="nav-link">
+        📋 User List
+      </a>
+      <a [routerLink]="['create']" routerLinkActive="active" class="nav-link">
+        ➕ Create User
+      </a>
+      <a [routerLink]="/settings" routerLinkActive="active" class="nav-link">
+        ⚙️ Settings
+      </a>
+    </div>
+    
+    <div class="child-outlet-container">
+      <!-- This is a nested router-outlet for child routes -->
+       /users/list
+      <router-outlet></router-outlet>
+    </div>
+    
+    <div class="code-explanation">
+      <h3>🔍 Child Routes Configuration</h3>
+      <pre><code>{{'{' }}
+  path: 'users',
+  component: UsersComponent,
+  children: [
+    {{ '{' }} path: 'list', component: UserListComponent {{ '}' }},
+    {{ '{' }} path: 'create', component: CreateUserComponent {{ '}' }},
+    {{ '{' }} path: 'settings', component: UserSettingsComponent {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+      <p>Child components are rendered in the UsersComponent's &lt;router-outlet&gt;</p>
+    </div>
+  </div>
+</div>

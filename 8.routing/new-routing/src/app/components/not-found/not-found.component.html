@@ -1,0 +1,31 @@
+<div class="page-container">
+  <div class="not-found-content">
+    <div class="error-code">404</div>
+    <h1>🚫 Page Not Found</h1>
+    <p class="error-message">
+      Oops! The page you're looking for doesn't exist.
+    </p>
+    
+    <div class="info-box">
+      <h3>💡 Wildcard Route Example</h3>
+      <p>This component is displayed when no other routes match.</p>
+      <p>It's configured using the wildcard route:</p>
+      <pre><code>{{ '{' }} path: '**', component: NotFoundComponent {{ '}' }}</code></pre>
+      <p class="note">⚠️ The wildcard route must be the <strong>last route</strong> in your routes array!</p>
+    </div>
+    
+    <div class="action-buttons">
+      <a routerLink="/" class="home-button">🏠 Go to Home</a>
+      <a routerLink="/products" class="products-button">🛍️ Browse Products</a>
+    </div>
+    
+    <div class="suggestions">
+      <h4>Quick Links:</h4>
+      <ul>
+        <li><a routerLink="/about">About Page</a></li>
+        <li><a routerLink="/contact">Contact Us</a></li>
+        <li><a routerLink="/users">Users Section</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

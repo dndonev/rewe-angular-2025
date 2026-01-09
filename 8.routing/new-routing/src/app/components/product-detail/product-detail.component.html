@@ -1,0 +1,64 @@
+<div class="page-container">
+  <h1>📦 Product Details</h1>
+  <div class="content-box">
+    @if (product) {
+      <div class="product-detail">
+        <div class="product-header">
+          <span class="product-icon-large">{{ product.icon }}</span>
+          <div>
+            <h2>{{ product.name }}</h2>
+            <p class="product-id">Product ID: {{ productId }}</p>
+          </div>
+        </div>
+        
+        <div class="product-info">
+          <div class="info-row">
+            <strong>Description:</strong>
+            <span>{{ product.description }}</span>
+          </div>
+          <div class="info-row">
+            <strong>Price:</strong>
+            <span class="price">{{ product.price }}</span>
+          </div>
+          <div class="info-row">
+            <strong>Category:</strong>
+            <span>{{ product.category }}</span>
+          </div>
+          <div class="info-row">
+            <strong>Stock:</strong>
+            <span class="stock">{{ product.stock }} units available</span>
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="buy-button">🛒 Add to Cart</button>
+          <a routerLink="/products" class="back-button">← Back to Products</a>
+        </div>
+      </div>
+    } @else {
+      <div class="not-found">
+        <h2>😕 Product Not Found</h2>
+        <p>Product with ID {{ productId }} does not exist.</p>
+        <a routerLink="/products" class="back-button">← Back to Products</a>
+      </div>
+    }
+    
+    <div class="code-explanation">
+      <h3>💡 Route Parameter Explanation</h3>
+      <p>This component receives the product ID from the URL route parameter.</p>
+      
+      <div class="code-block">
+        <h4>Route Configuration:</h4>
+        <pre><code>{{ '{' }} path: 'products/:id', component: ProductDetailComponent {{ '}' }}</code></pre>
+      </div>
+      
+      <div class="code-block">
+        <h4>Accessing Route Parameters:</h4>
+      </div>
+      
+      <div class="url-info">
+        <strong>Current URL:</strong> /products/{{ productId }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.child-component {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.user-table {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+tr:hover {
+  background: #f8f9fa;
+}
+
+.role-badge {
+  background: #007bff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}

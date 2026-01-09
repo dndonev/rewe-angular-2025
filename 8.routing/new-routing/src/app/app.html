@@ -1,0 +1,75 @@
+<!-- Routing App -->
+<div class="app-container">
+  <!-- Header with Navigation -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🚀</span>
+        <h1>{{ title() }}</h1>
+      </div>
+      
+      <!-- Mobile menu toggle -->
+      <button class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()">
+        <span>☰</span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <nav class="main-nav" [class.open]="isMenuOpen()">
+        <a routerLink="/home" 
+           routerLinkActive="active" 
+           (click)="closeMenu()"
+           class="nav-link">
+          🏠 Home
+        </a>
+        <a routerLink="/about" 
+           routerLinkActive="active" 
+           (click)="closeMenu()"
+           class="nav-link">
+          ℹ️ About
+        </a>
+        <a routerLink="/products" 
+           routerLinkActive="active" 
+           (click)="closeMenu()"
+           class="nav-link">
+          🛍️ Products
+        </a>
+        <a routerLink="/users" 
+           routerLinkActive="active" 
+           (click)="closeMenu()"
+           class="nav-link">
+          👥 Users
+        </a>
+        <a routerLink="/contact" 
+           routerLinkActive="active" 
+           (click)="closeMenu()"
+           class="nav-link">
+          📧 Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Router Outlet Info Banner -->
+  <div class="router-outlet-banner">
+    <div class="banner-content">
+      <strong>👇 Router Outlet Below:</strong>
+      <span>The &lt;router-outlet&gt; directive displays the component for the active route</span>
+    </div>
+  </div>
+  
+  <!-- Main Content Area with Router Outlet -->
+  <main class="main-content">
+    <!-- This is where routed components will be displayed -->
+    <router-outlet></router-outlet>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>© 2026 Angular Routing Demo | Educational Project for Students</p>
+      <div class="footer-links">
+        <span>Key Concepts: Router • Routes • RouterOutlet • RouterLink • ActivatedRoute</span>
+      </div>
+    </div>
+  </footer>
+</div>

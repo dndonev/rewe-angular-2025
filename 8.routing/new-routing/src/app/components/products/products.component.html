@@ -1,0 +1,32 @@
+<div class="page-container">
+  <h1>🛍️ Products Page</h1>
+  <div class="content-box">
+    <h2>Route Parameters Demo</h2>
+    <p>Click on any product to see dynamic route parameters in action!</p>
+    
+    <div class="products-grid">
+      @for (product of products; track product.id) {
+        <div class="product-card">
+          <div class="product-icon">{{ product.icon }}</div>
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price }}</p>
+          <a [routerLink]="['/products', product.id]" class="view-button">
+            View Details →
+          </a>
+        </div>
+      }
+    </div>
+    
+    <div class="info-section">
+      <h3>🔍 How Route Parameters Work</h3>
+      <p>When you click "View Details", you'll navigate to:</p>
+      <code>/products/:id</code>
+      <p>The <code>:id</code> is a route parameter that changes dynamically.</p>
+      <p>In the detail component, we can access it using:</p>
+      <pre><code>this.route.params.subscribe(params => {{'{'}}
+  const id = params['id'];
+{{'}'}});</code></pre>
+    </div>
+  </div>
+</div>
