@@ -1,0 +1,54 @@
+<!-- 
+  UserCardComponent Template
+  
+  This template demonstrates:
+  - Data binding with @Input properties
+  - Event binding with @Output emitters
+  - Conditional rendering with *ngIf
+  - CSS class binding with [class]
+  - Interpolation {{ }}
+-->
+
+<div 
+  class="user-card" 
+  [class.selectable]="selectable"
+  (click)="onCardClick()"
+  data-testid="user-card">
+  
+  <!-- User Avatar -->
+  <div class="user-avatar">
+    <span class="avatar-text">{{ user.name.charAt(0).toUpperCase() }}</span>
+  </div>
+
+  <!-- User Information -->
+  <div class="user-info">
+    <h3 class="user-name" data-testid="user-name">{{ user.name }}</h3>
+    <p class="user-email" data-testid="user-email">{{ user.email }}</p>
+    
+    <!-- Role Badge -->
+    <span 
+      class="role-badge" 
+      [class]="getRoleBadgeClass()"
+      data-testid="user-role">
+      {{ user.role }}
+    </span>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="user-actions">
+    <button 
+      class="btn btn-edit" 
+      (click)="onEdit($event)"
+      data-testid="edit-button"
+      aria-label="Edit user">
+      Edit
+    </button>
+    <button 
+      class="btn btn-delete" 
+      (click)="onDelete($event)"
+      data-testid="delete-button"
+      aria-label="Delete user">
+      Delete
+    </button>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<!--
+  UserFormComponent Template
+  
+  This template demonstrates:
+  - Reactive forms with formGroup and formControlName
+  - Form validation and error display
+  - Conditional rendering with *ngIf
+  - Dynamic CSS classes with [class]
+  - Form submission handling
+-->
+
+<div class="user-form-container">
+  <h2 class="form-title">{{ isEditMode ? 'Edit User' : 'Create New User' }}</h2>
+
+  <form 
+    [formGroup]="userForm" 
+    (ngSubmit)="onSubmit()"
+    class="user-form"
+    data-testid="user-form">
+    
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name" class="form-label">
+        Name <span class="required">*</span>
+      </label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        class="form-input"
+        [class.error]="isFieldInvalid('name')"
+        placeholder="Enter full name"
+        data-testid="name-input"
+      />
+      <div 
+        *ngIf="isFieldInvalid('name')" 
+        class="error-message"
+        data-testid="name-error">
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email" class="form-label">
+        Email <span class="required">*</span>
+      </label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-input"
+        [class.error]="isFieldInvalid('email')"
+        placeholder="Enter email address"
+        data-testid="email-input"
+      />
+      <div 
+        *ngIf="isFieldInvalid('email')" 
+        class="error-message"
+        data-testid="email-error">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <!-- Role Field -->
+    <div class="form-group">
+      <label for="role" class="form-label">
+        Role <span class="required">*</span>
+      </label>
+      <select
+        id="role"
+        formControlName="role"
+        class="form-select"
+        data-testid="role-select">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+      <div 
+        *ngIf="isFieldInvalid('role')" 
+        class="error-message"
+        data-testid="role-error">
+        {{ getErrorMessage('role') }}
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn btn-cancel"
+        (click)="onCancel()"
+        data-testid="cancel-button">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-submit"
+        [disabled]="userForm.invalid"
+        data-testid="submit-button">
+        {{ getSubmitButtonText() }}
+      </button>
+    </div>
+
+    <!-- Form Status Indicator -->
+    <div class="form-status" *ngIf="userForm.invalid && userForm.touched">
+      <p class="status-message" data-testid="form-invalid-message">
+        Please correct the errors above before submitting.
+      </p>
+    </div>
+  </form>
+</div>

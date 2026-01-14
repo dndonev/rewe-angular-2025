@@ -1,0 +1,75 @@
+/**
+ * App Component Styles
+ * 
+ * Root component styles for the Angular Testing Tutorial
+ */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  .app-header {
+    background: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #111827;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 1rem;
+      color: #6b7280;
+    }
+  }
+
+  .app-main {
+    flex: 1;
+    padding: 2rem;
+  }
+
+  .app-footer {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+
+    p {
+      margin: 0;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .app-container {
+    .app-header {
+      padding: 1rem;
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .subtitle {
+        font-size: 0.875rem;
+      }
+    }
+
+    .app-main {
+      padding: 1rem;
+    }
+  }
+}

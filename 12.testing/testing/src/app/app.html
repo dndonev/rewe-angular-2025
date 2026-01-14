@@ -1,0 +1,17 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title() }}</h1>
+    <p class="subtitle">A comprehensive guide to testing Angular applications with Jasmine and Karma</p>
+  </header>
+
+  <main class="app-main">
+    <!-- Main content: UserListComponent with all nested components -->
+    <app-user-list></app-user-list>
+  </main>
+
+  <footer class="app-footer">
+    <p>Built with Angular {{ getAngularVersion() }} | Check out the test files to learn Angular testing!</p>
+  </footer>
+</div>
+
+<router-outlet />

@@ -1,0 +1,102 @@
+<!--
+  UserListComponent Template
+  
+  This template demonstrates:
+  - Conditional rendering with *ngIf
+  - List rendering with *ngFor
+  - Parent-child component communication
+  - Event binding from child components
+  - Loading and error states
+-->
+
+<div class="user-list-container">
+  <!-- Header -->
+  <div class="header">
+    <h1 class="title">User Management</h1>
+    <button 
+      class="btn btn-primary" 
+      (click)="openCreateForm()"
+      [disabled]="loading || showForm"
+      data-testid="create-user-button">
+      + Create User
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <div 
+    *ngIf="error" 
+    class="error-banner"
+    data-testid="error-banner">
+    <p class="error-text">{{ error }}</p>
+    <button 
+      class="btn btn-retry" 
+      (click)="retryLoad()"
+      data-testid="retry-button">
+      Retry
+    </button>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div 
+    *ngIf="loading && users.length === 0" 
+    class="loading-container"
+    data-testid="loading-indicator">
+    <div class="spinner"></div>
+    <p>Loading users...</p>
+  </div>
+
+  <!-- User Form (Create/Edit) -->
+  <div 
+    *ngIf="showForm" 
+    class="form-container"
+    data-testid="form-container">
+    <app-user-form
+      [user]="editingUser"
+      (userSubmitted)="onUserSubmitted($event)"
+      (cancelled)="onFormCancelled()">
+    </app-user-form>
+  </div>
+
+  <!-- User List -->
+  <div 
+    *ngIf="!loading || users.length > 0" 
+    class="users-grid"
+    data-testid="users-grid">
+    
+    <!-- Empty State -->
+    <div 
+      *ngIf="users.length === 0" 
+      class="empty-state"
+      data-testid="empty-state">
+      <h3>No users found</h3>
+      <p>Click "Create User" to add your first user.</p>
+    </div>
+
+    <!-- User Cards -->
+    <app-user-card
+      *ngFor="let user of users; trackBy: trackByUserId"
+      [user]="user"
+      [selectable]="true"
+      (userSelected)="onUserSelected($event)"
+      (userEdited)="onUserEdit($event)"
+      (userDeleted)="onUserDelete($event)"
+      [attr.data-testid]="'user-card-' + user.id">
+    </app-user-card>
+  </div>
+
+  <!-- User Count -->
+  <div 
+    *ngIf="users.length > 0" 
+    class="user-count"
+    data-testid="user-count">
+    Total Users: {{ users.length }}
+  </div>
+
+  <!-- Selected User Info -->
+  <div 
+    *ngIf="selectedUserId" 
+    class="selected-info"
+    data-testid="selected-info">
+    Selected User ID: {{ selectedUserId }}
+  </div>
+</div>
